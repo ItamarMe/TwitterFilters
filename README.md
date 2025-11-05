@@ -3,7 +3,8 @@ Filter Gifs and Reposts from user profiles
 
 for install:
 
-Either clone the repo, or download the .zip and extract, and then:
+Either clone the repository, or go to https://github.com/ItamarMe/TwitterFilters/releases/tag/Release and download the latest zip.
+Then:
 
 1. Go to chrome://extensions/ (your extension settings page)
 2. Enabled developer mode
