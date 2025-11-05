@@ -2,6 +2,7 @@
 Filter Gifs and Reposts from user profiles
 
 for install:
+
 Either clone the repo, or download the .zip and extract, and then:
 
 1. Go to chrome://extensions/ (your extension settings page)
