@@ -14,11 +14,11 @@
                 "*://www.x.com/*"
             ],
             "js": [
-                "removeGifs.js",
-                "removeReposts.js"
+                "gifs/removeGifs.js",
+                "reposts/removeReposts.js"
             ],
             "css": [
-                "removeReposts.css"
+                "reposts/removeReposts.css"
             ],
             "run_at": "document_start"
         }
@@ -28,8 +28,8 @@
             "16": "images/16.png",
             "128": "images/128.png"
         },
-        "default_title": "Filter Reposts",
-        "default_popup": "popup.html"
+        "default_title": "TwitterFilters",
+        "default_popup": "popup/popup.html"
     },
     "permissions": [
         "tabs",
@@ -38,7 +38,7 @@
     "web_accessible_resources": [
         {
             "resources": [
-                "injected.js"
+                "gifs/injected.js"
             ],
             "matches": [
                 "*://x.com/*",

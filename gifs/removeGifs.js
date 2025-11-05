@@ -1,7 +1,7 @@
 chrome.storage.sync.get('gifs_enabled', ({ gifs_enabled }) => {
     if (gifs_enabled !== false) {
         const script = document.createElement('script');
-        script.src = chrome.runtime.getURL('injected.js');
+        script.src = chrome.runtime.getURL('gifs/injected.js');
         (document.head || document.documentElement).appendChild(script);
         script.onload = () => script.remove();
         console.debug('GIF filter injected');
