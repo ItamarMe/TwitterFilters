@@ -2,7 +2,9 @@
 Filter Gifs and Reposts from user profiles
 
 for install:
+Either clone the repo, or download the .zip and extract, and then:
+
 1. Go to chrome://extensions/ (your extension settings page)
 2. Enabled developer mode
 3. Select "Load Unpacked"
-4. Select this folder
+4. Select the folder of the extension
