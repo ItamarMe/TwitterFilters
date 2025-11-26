@@ -17,3 +17,5 @@ chrome.storage.onChanged.addListener((changes) => {
         location.reload();
     }
 });
+
+/*TODO: implement filter replies in media*/
