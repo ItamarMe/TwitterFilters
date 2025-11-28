@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "Twitter Filters",
     "version": "1.0",
-    "description": "Filters Gifs and Reposts on Twitter to improve browsing experience.",
+    "description": "Filters Media and Reposts on Twitter to improve browsing experience.",
     "icons": {
         "16": "images/16.png",
         "128": "images/128.png"
@@ -14,7 +14,7 @@
                 "*://www.x.com/*"
             ],
             "js": [
-                "gifs/removeGifs.js",
+                "media/mediaContent.js",
                 "reposts/removeReposts.js"
             ],
             "css": [
@@ -38,7 +38,10 @@
     "web_accessible_resources": [
         {
             "resources": [
-                "gifs/injected.js"
+                "media/cleanFilters.js",
+                "media/injected.js",
+                "media/gifsFilter.js",
+                "media/repliesFilter.js"
             ],
             "matches": [
                 "*://x.com/*",
