@@ -26,9 +26,9 @@
 
         injectScript('media/injected.js')
 
-        console.debug('GIF filter injected');
+        console.log('Media filters injected');
     } else {
-        console.debug('GIF filter disabled - not injecting');
+        console.log('Media filters disabled - not injecting');
     }
 
     // Listen for changes and reload page
