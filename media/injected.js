@@ -58,11 +58,6 @@ const getProceedial = (jsonOG) => {
     return jsonOG?.data?.user?.result?.timeline?.timeline?.instructions[0]?.moduleItems
 }
 
-const getFiltered = (items) => {
-    return items.filter((item) =>
-        item?.item?.itemContent?.tweet_results?.result?.legacy?.entities?.media[0]?.type !== "animated_gif")
-}
-
 const setInitial = (newText, filtered) => {
     newText.data.user.result.timeline.timeline.instructions[2].entries[0].content.items = filtered
 }
