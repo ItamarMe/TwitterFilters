@@ -22,14 +22,14 @@
                             if (originalEntries = getInitial(jsonOG)) isInitial = true
                             else if (originalEntries = getProceedial(jsonOG)) isInitial = false
                             else throw new Error("could not find items")
-                            console.log(window.filtersArray);
+                            console.debug(window.filtersArray);
                             
-                            console.log({originalEntries})
+                            console.debug({originalEntries})
                             let filtered = originalEntries
                             window.filtersArray.forEach((filter) => {
                                 filtered = filter(filtered)
                             })
-                            console.log({ filtered })
+                            console.debug({ filtered })
 
                             if (isInitial) setInitial(jsonOG, filtered)
                             else setProceedial(jsonOG, filtered)
