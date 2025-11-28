@@ -1,8 +1,7 @@
 (() => {
-    const filterReplies = (items) => {
-        const userId = items[0]?.item?.itemContent?.tweet_results?.result?.core?.user_results?.result?.rest_id
-        return items.filter((item) => {
-            return item?.item?.itemContent?.tweet_results?.result?.legacy?.entities?.user_mentions != userId
+    const filterReplies = (items) => {        
+        return items.filter((item) => {            
+            return item?.item?.itemContent?.tweet_results?.result?.legacy?.entities?.user_mentions.length == 0
         })
     }
 
