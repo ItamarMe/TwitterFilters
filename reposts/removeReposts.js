@@ -23,15 +23,18 @@ const observer = new MutationObserver(() => {
 });
 
 const main = (enabled) => {
+    const timeline = document.querySelector('[aria-label^="Timeline:"]');
+    if (!timeline) return;
+
     if (enabled !== false) {
-        deleteReposts()
+        deleteReposts(timeline)
         observer.observe(document, { childList: true, subtree: true });
 
-        console.debug('Removing reposts');
+        console.log('Removing reposts');
     } else {
         observer.disconnect()
         showReposts()
-        console.debug('Returning reposts');
+        console.log('Returning reposts');
     }
 }
 
