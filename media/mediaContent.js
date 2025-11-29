@@ -2,13 +2,13 @@
     const filtersToInject = []
 
     // Get values properly using Promises
-    const { gifs_enabled } = await chrome.storage.sync.get('gifs_enabled');
-    if (gifs_enabled !== false) {
+    const { gifsEnabled } = await chrome.storage.sync.get('gifsEnabled');
+    if (gifsEnabled !== false) {
         filtersToInject.push('media/gifsFilter.js');
     }
 
-    const { replies_enabled } = await chrome.storage.sync.get('replies_enabled');
-    if (replies_enabled !== false) {
+    const { repliesEnabled } = await chrome.storage.sync.get('repliesEnabled');
+    if (repliesEnabled !== false) {
         filtersToInject.push('media/repliesFilter.js');
     }
 
@@ -33,7 +33,7 @@
 
     // Listen for changes and reload page
     chrome.storage.onChanged.addListener((changes) => {
-        if ('gifs_enabled' in changes || 'replies_enabled' in changes) {
+        if (['gifsEnabled', 'repliesEnabled'].some(key => key in changes)) {
             console.debug('Settings changed - reloading page');
             location.reload();
         }

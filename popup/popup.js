@@ -1,6 +1,6 @@
 const handleToggle = (id) => {
     const toggle = document.getElementById(id)
-    const key = toggle.name + "_enabled"
+    const key = toggle.name + "Enabled"
     getState(key, toggle)
     toggle.addEventListener('change', () => changeHandler(key, toggle))
 }
