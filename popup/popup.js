@@ -6,13 +6,16 @@ const handleToggle = (id) => {
 }
 
 const getState = (key, toggle) => {
-    chrome.storage.sync.get(key, ({ enabled }) => {
-        if (enabled == undefined) {
-            enabled = true
-            chrome.storage.sync.set({ [key]: enabled })
+    chrome.storage.sync.get(key, result => {
+        let enabled = result[key];
+
+        if (enabled === undefined) {
+            enabled = true;
+            chrome.storage.sync.set({ [key]: enabled });
         }
-        toggle.checked = !!enabled
-    })
+
+        toggle.checked = !!enabled;
+    });
 }
 
 const changeHandler = (key, toggle) => {
