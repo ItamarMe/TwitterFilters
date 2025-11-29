@@ -23,11 +23,8 @@ const observer = new MutationObserver(() => {
 });
 
 const main = (enabled) => {
-    const timeline = document.querySelector('[aria-label^="Timeline:"]');
-    if (!timeline) return;
-
     if (enabled !== false) {
-        deleteReposts(timeline)
+        deleteReposts()
         observer.observe(document, { childList: true, subtree: true });
 
         console.log('Removing reposts');
@@ -39,8 +36,6 @@ const main = (enabled) => {
 }
 
 chrome.storage.sync.get('reposts_enabled', (result) => {
-    console.log(result['reposts_enabled']);
-
     main(result['reposts_enabled'])
 });
 
