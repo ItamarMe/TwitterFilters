@@ -3,19 +3,17 @@ const repostSVG = '"M4.75 3.79l4.603 4.3-1.706 1.82L6 8.38v7.37c0 .97.784 1.75 1
 const deleteReposts = () => {
     const timeline = document.querySelector('[aria-label^="Timeline:"]');
     if (!timeline) return;
+
     timeline.querySelectorAll(`path[d=${repostSVG}]`)
-        .forEach(el => {
-            el.closest('[data-testid="cellInnerDiv"]').classList.add('hide-repost');
-        });
+        .forEach(el => el.closest('[data-testid="cellInnerDiv"]').classList.add('hide-repost'));
 }
 
 const showReposts = () => {
     const timeline = document.querySelector('[aria-label^="Timeline:"]');
     if (!timeline) return;
+    
     timeline.querySelectorAll(`.hide-repost`)
-        .forEach(el => {
-            el.classList.remove('hide-repost')
-        });
+        .forEach(el => el.classList.remove('hide-repost'));
 }
 
 const observer = new MutationObserver(() => {
@@ -35,13 +33,13 @@ const main = (enabled) => {
     }
 }
 
-chrome.storage.sync.get('reposts_enabled', (result) => {
-    main(result['reposts_enabled'])
+chrome.storage.sync.get('repostsEnabled', (result) => {
+    main(result['repostsEnabled'])
 });
 
 // Listen for changes and reload page
 chrome.storage.onChanged.addListener((changes) => {
-    if ('reposts_enabled' in changes) {
-        main(changes.reposts_enabled.newValue)
+    if ('repostsEnabled' in changes) {
+        main(changes.repostsEnabled.newValue)
     }
 });
