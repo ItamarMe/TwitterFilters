@@ -1,38 +1,28 @@
-const repostToggle = document.getElementById('repost-toggle');
+const handleToggle = (id) => {
+    const toggle = document.getElementById(id)
+    const key = toggle.name + "Enabled"
+    getState(key, toggle)
+    toggle.addEventListener('change', () => changeHandler(key, toggle))
+}
 
-// Load saved state
-chrome.storage.sync.get('reposts_enabled', ({ reposts_enabled }) => {
-    if (reposts_enabled == undefined) {
-        reposts_enabled = true
-        chrome.storage.sync.set({ reposts_enabled });
-    }
-    repostToggle.checked = !!reposts_enabled;
-});
+const getState = (key, toggle) => {
+    chrome.storage.sync.get(key, result => {
+        let enabled = result[key];
 
-// Handle user toggle
-repostToggle.addEventListener('change', () => {
-    const reposts_enabled = repostToggle.checked;
-    chrome.storage.sync.set({ reposts_enabled });
-});
+        if (enabled === undefined) {
+            enabled = true;
+            chrome.storage.sync.set({ [key]: enabled });
+        }
 
-const gifsToggle = document.getElementById('gifs-toggle');
+        toggle.checked = !!enabled;
+    });
+}
 
-// Load saved state
-chrome.storage.sync.get('gifs_enabled', ({ gifs_enabled }) => {
-    if (gifs_enabled == undefined) {
-        gifs_enabled = true
-        chrome.storage.sync.set({ gifs_enabled });
-    }
-    gifsToggle.checked = !!gifs_enabled;
-});
+const changeHandler = (key, toggle) => {
+    const enabled = toggle.checked;
+    chrome.storage.sync.set({ [key]: enabled })
+}
 
-// Handle user toggle
-gifsToggle.addEventListener('change', async () => {
-    const gifs_enabled = gifsToggle.checked;
-    chrome.storage.sync.set({ gifs_enabled });
-    const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-    
-    if (tab && tab.id && tab.url.startsWith("https://x.com/")) {
-        chrome.tabs.reload(tab.id);
-    }
-});
+const ids = ['gifs-toggle', 'replies-toggle', 'repost-toggle']
+
+ids.forEach((id) => handleToggle(id))

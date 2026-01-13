@@ -22,9 +22,13 @@
                             if (originalEntries = getInitial(jsonOG)) isInitial = true
                             else if (originalEntries = getProceedial(jsonOG)) isInitial = false
                             else throw new Error("could not find items")
-
+                            console.debug(window.filtersArray);
+                            
                             console.debug({originalEntries})
-                            const filtered = getFiltered(originalEntries)
+                            let filtered = originalEntries
+                            window.filtersArray.forEach((filter) => {
+                                filtered = filter(filtered)
+                            })
                             console.debug({ filtered })
 
                             if (isInitial) setInitial(jsonOG, filtered)
@@ -52,11 +56,6 @@ const getInitial = (jsonOG) => {
 
 const getProceedial = (jsonOG) => {
     return jsonOG?.data?.user?.result?.timeline?.timeline?.instructions[0]?.moduleItems
-}
-
-const getFiltered = (items) => {
-    return items.filter((item) =>
-        item?.item?.itemContent?.tweet_results?.result?.legacy?.entities?.media[0]?.type !== "animated_gif")
 }
 
 const setInitial = (newText, filtered) => {
