@@ -16,20 +16,21 @@
                     if (this.readyState === 4 && this.status === 200) {
                         try {
                             const jsonOG = JSON.parse(original)
-                            
+
                             let originalEntries, isInitial;
 
                             if (originalEntries = getInitial(jsonOG)) isInitial = true
                             else if (originalEntries = getProceedial(jsonOG)) isInitial = false
                             else throw new Error("could not find items")
                             console.debug(window.filtersArray);
-                            
-                            console.debug({originalEntries})
+
+                            console.debug({ originalEntries })
                             let filtered = originalEntries
                             window.filtersArray.forEach((filter) => {
                                 filtered = filter(filtered)
                             })
                             console.debug({ filtered })
+                            if (isInitial && filtered.length === 0) filtered.push(originalEntries[0]) // prevent a bug
 
                             if (isInitial) setInitial(jsonOG, filtered)
                             else setProceedial(jsonOG, filtered)
